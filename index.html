@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beton Karışım Tasarım Aracı</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-decor"></div>
+    <div class="container">
+        <header>
+            <h1>Beton Karışım <span>Tasarım Aracı</span></h1>
+            <p>Standart Hacim Yöntemi ile 1 m³ beton reçetesi hesaplama.</p>
+        </header>
+
+        <main>
+            <div class="card form-section">
+                <h2>Parametreleri Girin</h2>
+                <form id="mixForm">
+                    <div class="input-group">
+                        <label for="fc">Hedef Basınç Dayanımı (MPa)</label>
+                        <select id="fc">
+                            <option value="15">C15 (15 MPa)</option>
+                            <option value="20">C20 (20 MPa)</option>
+                            <option value="25" selected>C25/30 (25 MPa Silindir)</option>
+                            <option value="30">C30/37 (30 MPa Silindir)</option>
+                            <option value="35">C35/45 (35 MPa Silindir)</option>
+                            <option value="40">C40/50 (40 MPa Silindir)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="slump">Hedef Çökme (Slump Sınıfı)</label>
+                        <select id="slump">
+                            <option value="25">S1 (25 - 50 mm) - Kuru</option>
+                            <option value="75" selected>S2/S3 (75 - 100 mm) - Plastik</option>
+                            <option value="150">S4 (150 - 175 mm) - Akıcı</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="dmax">Maksimum Agrega Çapı (Dmax)</label>
+                        <select id="dmax">
+                            <option value="10">10 mm (Çok İnce)</option>
+                            <option value="12.5">12.5 mm</option>
+                            <option value="20" selected>20 mm (Standart)</option>
+                            <option value="25">25 mm</option>
+                            <option value="40">40 mm (İri)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="fm">İnce Agrega İncelik Modülü</label>
+                        <select id="fm">
+                            <option value="2.40">2.40 (İnce Tane)</option>
+                            <option value="2.60">2.60</option>
+                            <option value="2.80" selected>2.80 (Orta)</option>
+                            <option value="3.00">3.00 (Kaba Tane)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="dr_ca">İri Agrega Kuru Birim Hacim Ağırlığı (kg/m³)</label>
+                        <input type="number" id="dr_ca" value="1600" step="10">
+                    </div>
+
+                    <div class="input-group-row">
+                        <div class="input-group">
+                            <label>Çimento Özgül Ağ.</label>
+                            <input type="number" id="sg_c" value="3.15" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label>İri Agrega Özgül Ağ.</label>
+                            <input type="number" id="sg_ca" value="2.70" step="0.01">
+                        </div>
+                        <div class="input-group">
+                            <label>İnce Agrega Özgül Ağ.</label>
+                            <input type="number" id="sg_fa" value="2.60" step="0.01">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card results-section">
+                <h2>Hesaplama Sonuçları (1 m³ için)</h2>
+                
+                <div class="results-grid">
+                    <div class="chart-container">
+                        <canvas id="mixChart"></canvas>
+                    </div>
+                    
+                    <div class="table-container">
+                        <p class="summary-text" id="summaryWc">Su/Çimento (W/C) Oranı: <strong>0.62</strong></p>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Malzeme</th>
+                                    <th>Eklenecek Miktar (kg)</th>
+                                    <th>Karıştırma Oranı</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody">
+                                <!-- JS verileri buraya dolduracak -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
