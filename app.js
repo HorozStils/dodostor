@@ -177,3 +177,14 @@ document.querySelectorAll('input, select').forEach(el => {
 
 // İlk hesabı tetikle
 calculateMix();
+
+// Servis Çalışanı (PWA) Kaydı
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js').then(reg => {
+            console.log('PWA Service Worker Basariyla Kaydedildi.', reg);
+        }).catch(err => {
+            console.log('Service worker kaydi basarisiz.', err);
+        });
+    });
+}
